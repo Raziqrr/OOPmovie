@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Movie</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+      <div id="wrapper2">
+         <a id="watchlist" href="watchlist.html">Watchlist</a>
+      </div>
+    <div id="intro">
+         <div class="nav-bar">
+      <h1>Search for your favourite movies here</h1>
+      <div id="searchArea">
+        <div class="search-bar">
+          <input id="moviename" type="text" placeholder="Search"/>
+          <button id="search" onclick="search()">
+            <img class="sicon" src="img/searchicon.png">
+          </button>
+        </div>
+      </div>
+    </div> 
+      <div id="maindetails">
+        <h2 class="nowshowing">Now In Cinemas</h2>
+        <h1 id="titles"></h1>
+        <h2 id="tagline"></h2>
+        <div id="topratedur">
+          <div id="mainduration"></div>
+          <div id="mainrate"></div>
+        </div>
+      </div>
+
+      <img id="image" src="" />
+    </div>
+
+    <div class="search-results" id="search-results">
+      <h1 id="status">Awaiting Search</h1>
+    </div>
+  </body>
+  <script src="main.js"></script>
+  <script src="search.js" defer></script>
+</html>

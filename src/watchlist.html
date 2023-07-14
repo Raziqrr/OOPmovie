@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+</head>
+<body>
+    <div class="left">
+    <h1 class="headers"">Your Watchlists</h1>       
+        <button id="opencreate">+ Create New Watchlist</button>
+        <form id="watchform"> 
+            <button id="closecreate">X</button>
+            <div class="form-group">
+                <label>Give your watchlist a name</label>
+              <input id="fileName" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Add your movies here</label>
+              <textarea id="fileContents" class="form-control" rows="10">#Movie 1</textarea>
+    
+            </div>
+            <button id="btnCreate" class="btn btn-default">Create</button>
+          </form>
+    </div>
+    <div class="right">
+    <ul id="wlists">
+    </ul>        
+    </div>
+    <a class="backtomain" href="index.html">Back</a>
+    <script src="main.js">
+
+      </script>
+      <script>
+            const folderPath = 'src/Files'; // Replace with the actual folder path
+            // Read the directory contents
+            wl()
+            function wl(){
+                fs.readdir(folderPath, (err, files) => {
+            console.log(1)
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(files); // Array of files in the folder
+            files.forEach(file => {
+                var name = (file.split("."))[0]
+                console.log(name); //
+                var wname = document.createElement("h2")
+                wname.innerHTML = name
+                var watch = document.createElement("li")
+                watch.id = name
+                
+                var del = document.createElement("button")
+                del.innerHTML = "Delete"
+                del.value = name
+                del.id = name
+                var vu = document.createElement("button")
+                vu.innerHTML = "View"
+                vu.value = name
+                vu.id = name
+                var fc = document.createElement("textarea")
+                fc.className = "textareaView"
+                fc.id = "text"+name
+                var sv = document.createElement("button")
+                sv.innerHTML = "Save"
+                sv.className = "saveupdate"
+                sv.id = name
+                var top = document.createElement("div")
+                var bottom = document.createElement("div")
+                var buts = document.createElement("div")
+                bottom.id = "bot"+name
+                bottom.className = "bot"
+                var c = document.createElement("button")
+                c.innerHTML = "X"
+                c.id = name
+                c.className = "closing"
+                bottom.appendChild(c)
+                buts.className = "buts"
+                top.className = "listhead"
+                top.appendChild(wname)
+                buts.appendChild(vu)
+                buts.appendChild(del)
+                top.appendChild(buts)
+                bottom.appendChild(fc)
+                bottom.appendChild(sv)
+                watch.appendChild(top)
+                watch.appendChild(bottom)
+                document.getElementById("wlists").appendChild(watch)
+
+                c.addEventListener("click", close, name)
+                vu.addEventListener("click",viweupdate, (name))
+                del.addEventListener("click",deletes, (name))
+                sv.addEventListener("click",save, (name))
+            });
+            });
+            }
+            function close(fname){
+                var t = document.getElementById("bot"+fname.target.id)
+                console.log(fname.target.id)
+                console.log(t)
+                t.style.height = "0"
+            }
+            var i =1
+            var opencreate = document.getElementById("opencreate")
+            opencreate.addEventListener("click", function(){
+                console.log(i)
+                if(i==1){
+                   document.getElementById("watchform").style.display = "block" 
+                   i=0
+                }
+                else{
+                    document.getElementById("watchform").style.display = "none" 
+                    i=1
+                }     
+            })
+      </script>
+</body>
+</html>
